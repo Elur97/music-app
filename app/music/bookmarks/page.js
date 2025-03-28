@@ -7,27 +7,63 @@ import MusicCard from "@/components/MusicCard";
 
 export default function BookmarksPage() {
   const [bookmarks, setBookmarks] = useState([]);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    const fetchBookmarks = async () => {
-      const bookmarksQuery = query(
-        collection(db, "bookmarks"),
-        where("userId", "==", auth.currentUser?.uid)
-      );
-      const bookmarkSnapshot = await getDocs(bookmarksQuery);
-      setBookmarks(bookmarkSnapshot.docs.map(doc => doc.data()));
-    };
-    if (auth.currentUser) {
+    // ユーザーの認証状態の変更を監視
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log("ユーザーがログインしています", user.uid);
+        setUserId(user.uid);  // ユーザーがログインしたらユーザーIDを保存
+      } else {
+        console.log("ユーザーがログアウトしています");
+        setUserId(null);  // ログアウトしたらユーザーIDをnullに
+      }
+    });
+
+    // クリーンアップ
+    return () => unsubscribe();
+  }, []);  // 初回のみ実行
+
+  useEffect(() => {
+    // ユーザーIDがセットされたときにブックマークを取得
+    if (userId) {
+      const fetchBookmarks = async () => {
+        try {
+          const bookmarksQuery = query(
+            collection(db, "bookmarks"),
+            where("userId", "==", userId)
+          );
+          const bookmarkSnapshot = await getDocs(bookmarksQuery);
+          const fetchedBookmarks = bookmarkSnapshot.docs.map(doc => ({
+            ...doc.data(),
+            id: doc.id
+          }));
+
+          console.log("取得したブックマーク:", fetchedBookmarks);
+          setBookmarks(fetchedBookmarks);  // 取得したブックマークをステートにセット
+        } catch (error) {
+          console.error("ブックマークの取得に失敗しました:", error);
+        }
+      };
+
       fetchBookmarks();
     }
-  }, []);
+  }, [userId]);  // userIdが変わるたびに実行
 
   return (
-    <div className="space-y-4">
+    <div
+      className=" flex flex-col  items-center justify-center min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: 'url("/images/white_00115.jpg")' }} // 背景画像を設定
+    >
       {bookmarks.length > 0 ? (
-        bookmarks.map((bookmark, index) => <MusicCard key={index} music={bookmark} />)
+        bookmarks.map((bookmark) => (
+          <MusicCard key={bookmark.id} music={bookmark} />
+        ))
       ) : (
-        <p>お気に入りがありません</p>
+        <p className="text-4xl font-bold items-center justify-center ml-18 text-black">
+          Please wait a moment while the bookmark information is being displayed…
+        </p>
       )}
     </div>
   );

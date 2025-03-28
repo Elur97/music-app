@@ -1,11 +1,9 @@
 "use client";;
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-// 環境変数から Spotify API の認証情報を取得
 const clientId = "19cd03c8029640558542ae4692c26362";
 const clientSecret = "bec20dc135194be5ab0b71922b64c90c";
 const defaultImage = "/images/white-icon.png";
-
 
 export default function PopularArtists({ onSelect }) {
   const [artists, setArtists] = useState([]);
@@ -31,13 +29,12 @@ export default function PopularArtists({ onSelect }) {
     }
   };
 
-  // 人気アーティスト（新着リリースから）を取得する関数
-  const fetchPopularArtists = async () => {
+  // 人気アーティストを取得する関数（useCallbackでメモ化）
+  const fetchPopularArtists = useCallback(async () => {
     const accessToken = await getAccessToken();
     if (!accessToken) return;
 
     try {
-      // 新着リリースの取得
       const response = await fetch(
         "https://api.spotify.com/v1/browse/new-releases?country=US&limit=20",
         {
@@ -46,16 +43,14 @@ export default function PopularArtists({ onSelect }) {
       );
       const data = await response.json();
 
-      // アルバムからユニークなアーティストIDを収集
       const artistIds = [
         ...new Set(
           data.albums.items.flatMap((album) =>
             album.artists.map((artist) => artist.id)
           )
         ),
-      ].slice(0, 10); // 10件に限定
+      ].slice(0, 22); // 22件に限定
 
-      // 収集したIDでアーティスト詳細情報を取得
       const artistRes = await fetch(
         `https://api.spotify.com/v1/artists?ids=${artistIds.join(",")}`,
         {
@@ -64,7 +59,6 @@ export default function PopularArtists({ onSelect }) {
       );
       const artistData = await artistRes.json();
 
-      // 画像が無い場合は defaultImage を設定
       const artistList = artistData.artists.map((artist) => ({
         id: artist.id,
         name: artist.name,
@@ -80,9 +74,9 @@ export default function PopularArtists({ onSelect }) {
       console.error("人気アーティストの取得に失敗しました", error);
       setLoading(false);
     }
-  };
+  }, []); // 依存関係がないので空の配列を渡す
 
-  // 検索結果を取得する関数
+  // 検索クエリの変更に応じてアーティストを検索
   const searchArtists = async (query) => {
     const accessToken = await getAccessToken();
     if (!accessToken) return;
@@ -111,7 +105,6 @@ export default function PopularArtists({ onSelect }) {
     }
   };
 
-  // 検索クエリが変更されたときに検索を実行
   const handleSearchChange = (event) => {
     const query = event.target.value;
     setSearchQuery(query);
@@ -125,13 +118,12 @@ export default function PopularArtists({ onSelect }) {
 
   useEffect(() => {
     fetchPopularArtists();
-  }, []);
+  }, [fetchPopularArtists]); // fetchPopularArtists が変わらない限り再実行されない
 
   if (loading) return <div>アーティストを読み込み中...</div>;
 
   return (
     <div>
-      {/* 検索ボックス */}
       <input
         type="text"
         value={searchQuery}

@@ -20,23 +20,26 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-4xl font-bold mb-4">Sign In</h2>
-      <p className="text-3xl font-bold">Please enter your registerd email address and password</p>
-      <form onSubmit={handleLogin} className="border-1 pl-10 pr-10 mt-7 ">
+    <div 
+      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center" 
+      style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}
+    >
+      <h2 className="text-4xl font-bold mb-6 text-black">Sign In</h2>
+      <p className="text-3xl font-bold mb-4 text-black ">Please enter your registered email address and password</p>
+      <form onSubmit={handleLogin} className="border p-10 bg-white bg-opacity-60 rounded-lg shadow-md">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="メールアドレス"
-          className="w-60 border mr-10 p-2 mb-40 rounded"
+          className="w-60 border mr-3 p-2 mb-4 rounded"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="パスワード"
-          className="w-60 border  mt-50 mr-5  p-2 rounded"
+          className="w-60 border mr-3 p-2 mb-4 rounded"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
           ログイン
