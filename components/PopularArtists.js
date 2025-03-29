@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import { useState, useEffect, useCallback } from "react";
 
 const clientId = "19cd03c8029640558542ae4692c26362";
@@ -8,7 +8,7 @@ const defaultImage = "/images/white-icon.png";
 export default function PopularArtists({ onSelect }) {
   const [artists, setArtists] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(""); // 検索クエリ
+  const [searchQuery, setSearchQuery] = useState("");
 
   // アクセストークンを取得する関数
   const getAccessToken = async () => {
@@ -33,7 +33,6 @@ export default function PopularArtists({ onSelect }) {
   const fetchPopularArtists = useCallback(async () => {
     const accessToken = await getAccessToken();
     if (!accessToken) return;
-
     try {
       const response = await fetch(
         "https://api.spotify.com/v1/browse/new-releases?country=US&limit=20",
@@ -49,7 +48,7 @@ export default function PopularArtists({ onSelect }) {
             album.artists.map((artist) => artist.id)
           )
         ),
-      ].slice(0, 22); // 22件に限定
+      ].slice(0, 22);
 
       const artistRes = await fetch(
         `https://api.spotify.com/v1/artists?ids=${artistIds.join(",")}`,
@@ -59,10 +58,11 @@ export default function PopularArtists({ onSelect }) {
       );
       const artistData = await artistRes.json();
 
+      // "image" プロパティを "imageUrl" に変更
       const artistList = artistData.artists.map((artist) => ({
         id: artist.id,
         name: artist.name,
-        image:
+        imageUrl:
           artist.images && artist.images.length > 0
             ? artist.images[0].url
             : defaultImage,
@@ -74,13 +74,12 @@ export default function PopularArtists({ onSelect }) {
       console.error("人気アーティストの取得に失敗しました", error);
       setLoading(false);
     }
-  }, []); 
+  }, []);
 
-  // 検索クエリの変更に応じてアーティストを検索
+  // 検索クエリの変更に応じた検索
   const searchArtists = async (query) => {
     const accessToken = await getAccessToken();
     if (!accessToken) return;
-
     try {
       const response = await fetch(
         `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=artist&limit=10`,
@@ -89,16 +88,14 @@ export default function PopularArtists({ onSelect }) {
         }
       );
       const data = await response.json();
-
       const searchedArtists = data.artists.items.map((artist) => ({
         id: artist.id,
         name: artist.name,
-        image:
+        imageUrl:
           artist.images && artist.images.length > 0
             ? artist.images[0].url
             : defaultImage,
       }));
-
       setArtists(searchedArtists);
     } catch (error) {
       console.error("アーティスト検索に失敗しました", error);
@@ -108,7 +105,6 @@ export default function PopularArtists({ onSelect }) {
   const handleSearchChange = (event) => {
     const query = event.target.value;
     setSearchQuery(query);
-
     if (query) {
       searchArtists(query);
     } else {
@@ -118,7 +114,7 @@ export default function PopularArtists({ onSelect }) {
 
   useEffect(() => {
     fetchPopularArtists();
-  }, [fetchPopularArtists]); // fetchPopularArtists が変わらない限り再実行されない
+  }, [fetchPopularArtists]);
 
   if (loading) return <div>アーティストを読み込み中...</div>;
 
@@ -139,7 +135,7 @@ export default function PopularArtists({ onSelect }) {
             onClick={() => onSelect(artist)}
           >
             <img
-              src={artist.image}
+              src={artist.imageUrl}
               alt={artist.name}
               className="w-16 h-16 object-cover rounded-full"
             />

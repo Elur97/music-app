@@ -1,0 +1,31 @@
+[debug] [2025-03-29T12:44:27.111Z] ----------------------------------------------------------------------
+[debug] [2025-03-29T12:44:27.114Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\urase\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init firestore
+[debug] [2025-03-29T12:44:27.114Z] CLI Version:   13.35.1
+[debug] [2025-03-29T12:44:27.115Z] Platform:      win32
+[debug] [2025-03-29T12:44:27.115Z] Node Version:  v22.14.0
+[debug] [2025-03-29T12:44:27.115Z] Time:          Sat Mar 29 2025 21:44:27 GMT+0900 (日本標準時)
+[debug] [2025-03-29T12:44:27.115Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-29T12:44:27.121Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-03-29T12:44:27.179Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-29T12:44:27.179Z] > authorizing via signed-in user (urase0907@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\urase\OneDrive\Desktop\music-port\music-port
+
+[debug] [2025-03-29T12:44:27.896Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-03-29T12:44:27.896Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
