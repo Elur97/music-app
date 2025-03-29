@@ -61,8 +61,8 @@ export default function BookmarksPage() {
           <MusicCard key={bookmark.id} music={bookmark} />
         ))
       ) : (
-        <p className="text-4xl font-bold items-center justify-center ml-18 text-black">
-          Please wait a moment while the bookmark information is being displayed…
+        <p className="text-4xl font-bold items-center justify-center mb-35 text-black">
+          ブックマークされた投稿が表示されるまでしばらくお待ちください……
         </p>
       )}
     </div>

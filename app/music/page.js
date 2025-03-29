@@ -101,63 +101,68 @@ export default function MusicPage() {
   };
 
   return (
+    // 背景画像
     <div
       className="p-4 space-y-4 bg-cover bg-center min-h-screen"
       style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}
     >
-      <h2 className="text-2xl font-bold text-black">Lets share the music!</h2>
+  {/* ユーザー入力フォーム */}
+      <h2 className="text-3xl ml-8 font-bold text-black">Lets share the music!</h2>
       <form onSubmit={handleSubmit} className="space-y-4 bg-white bg-opacity-70 p-6 rounded-lg shadow-lg">
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="タイトル"
-          className="border p-2 rounded w-full"
+          className="border p-2 ml-2 rounded w-370"
         />
         <input
           type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           placeholder="URL"
-          className="border p-2 rounded w-full"
+          className="border p-2 ml-2 rounded  w-370"
         />
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="おすすめポイント"
-          className="border p-2 rounded w-full"
+          placeholder="コメントまたは感想を入力"
+          className="border p-2  ml-2 rounded w-370"
         />
-        <div>
-          <h3 className="text-2xl font-semibold mb-2 text-black">Please select the artist：</h3>
+        <div className="ml-2">
+          <h3 className=" text-3xl font-semibold mb-2 text-black">Please select the artist：</h3>
           <PopularArtists onSelect={(artist) => setSelectedArtist(artist)} />
           {selectedArtist && (
-            <p className="mt-2 text-black">Selected artist: {selectedArtist.name}</p>
+            <p className=" pt-2 font-bold text-black">Selected artist: {selectedArtist.name}</p>
           )}
         </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          post
+          {/* 投稿ボタン */}
+        <button type="submit" className=" ml-193 bg-blue-500  hover:bg-blue-800 text-white px-4 py-2 rounded">
+          POST
         </button>
       </form>
 
-      <div className="mt-6">
-        <h3 className="text-2xl font-bold text-black">Posts list</h3>
+      <div className="mt-5">
+        <h3 className="text-3xl ml-10 font-bold text-black">Posts list</h3>
         <div className="space-y-3">
           {posts.map((post) => (
-            <div key={post.id} className="border p-4 rounded-md bg-gray-100">
-              <h4 className="font-semibold">{post.title}</h4>
+            <div key={post.id} className="w-350 ml-10  border p-4 rounded-md  bg-white">
+              <h4>{post.title}</h4>
               <p>{post.comment}</p>
-              <p className="text-sm text-gray-500">{post.artist?.name || "アーティスト未選択"}</p>
+              <p>{post.artist?.name || "アーティスト未選択"}</p>
               <a href={post.url} target="_blank" rel="noopener noreferrer" className="text-blue-500">
                 {post.url}
               </a>
 
+              {/* ブックマークボタンと投稿削除ボタン */}
+            <div className="flex ml-60">
               <button
                 onClick={() => handleBookmark(post)}
                 className=" bg-yellow-500 text-white  px-4 py-2 ml-230  rounded"
               >
                 Bookmark
               </button>
-              {/* 投稿削除ボタン */}
+            
               <button
                 onClick={() => handleDeletePost(post.id)}
                 className=" bg-red-500 text-white   px-4 py-2 ml-2  rounded "
@@ -165,14 +170,15 @@ export default function MusicPage() {
                 Delete
               </button>
             </div>
+          </div>
           ))}
         </div>
       </div>
 
-      {/* 追加：ホームページに戻るボタン */}
+      {/* ホームページに戻るボタン */}
       <button
         onClick={() => router.push("/")}
-        className="bg-blue-500 text-white  ml-120 justify-center items-center px-4 py-2 rounded mt-4"
+        className="bg-blue-500  hover:bg-blue-800 text-white  ml-200 justify-center items-center px-4 py-2 rounded mt-4"
       >
         HOME
       </button>

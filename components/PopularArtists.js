@@ -74,7 +74,7 @@ export default function PopularArtists({ onSelect }) {
       console.error("人気アーティストの取得に失敗しました", error);
       setLoading(false);
     }
-  }, []); // 依存関係がないので空の配列を渡す
+  }, []); 
 
   // 検索クエリの変更に応じてアーティストを検索
   const searchArtists = async (query) => {
