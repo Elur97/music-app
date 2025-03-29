@@ -5,7 +5,9 @@ import { getFirestore } from "firebase/firestore";
 
 // firebase設定
 const firebaseConfig = {
+  apiKey: "AIzaSyA9yGt9PBlBeRBjLoWoo8y-Pd85eZj8YeQ",
   authDomain: "music-app-27760.firebaseapp.com",
+  
   projectId: "music-app-27760",
   storageBucket: "music-app-27760.firebasestorage.app",
   messagingSenderId: "257297664897",
