@@ -22,7 +22,7 @@ export default function RegisterPage() {
   return (
     <div className="flex flex-col  items-center justify-center min-h-screen bg-cover bg-center" 
          style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}>
-      <h2 className="text-4xl font-bold mb-6 text-black">Sign Up</h2>
+      <h2 className="text-4xl font-bold mb-6 text-black sm:text-2xl">Sign Up</h2>
       <p className="text-3xl font-bold mb-4 text-black ">Please enter your email and password.</p>
       <form onSubmit={handleRegister} className="border p-10 bg-white bg-opacity-60 rounded-lg shadow-md">
         <input

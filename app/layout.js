@@ -8,7 +8,7 @@ export default function Layout({ children }) {
         <header className="bg-green-400 w-full p-6 text-black text-center">
           <h1 className="text-5xl font-bold">Sharing Memories </h1>
         </header>
-        <main className=" w-300 pb-10">{children}</main>
+        <main className=" w-350 ">{children}</main>
       </body>
     </html>
   );
