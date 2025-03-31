@@ -1,8 +1,9 @@
 "use client";
+
+import { useState, useEffect } from "react";
 import { auth } from "@/firebase/firebase";
 import { db } from "@/firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useState, useEffect } from "react";
 import MusicCard from "@/components/MusicCard";
 
 export default function BookmarksPage() {
@@ -10,23 +11,20 @@ export default function BookmarksPage() {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    // ユーザーの認証状態の変更を監視
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         console.log("ユーザーがログインしています", user.uid);
-        setUserId(user.uid);  // ユーザーがログインしたらユーザーIDを保存
+        setUserId(user.uid);
       } else {
         console.log("ユーザーがログアウトしています");
-        setUserId(null);  // ログアウトしたらユーザーIDをnullに
+        setUserId(null);
       }
     });
 
-    // クリーンアップ
     return () => unsubscribe();
-  }, []);  // 初回のみ実行
+  }, []);
 
   useEffect(() => {
-    // ユーザーIDがセットされたときにブックマークを取得
     if (userId) {
       const fetchBookmarks = async () => {
         try {
@@ -41,7 +39,7 @@ export default function BookmarksPage() {
           }));
 
           console.log("取得したブックマーク:", fetchedBookmarks);
-          setBookmarks(fetchedBookmarks);  // 取得したブックマークをステートにセット
+          setBookmarks(fetchedBookmarks);
         } catch (error) {
           console.error("ブックマークの取得に失敗しました:", error);
         }
@@ -49,22 +47,14 @@ export default function BookmarksPage() {
 
       fetchBookmarks();
     }
-  }, [userId]);  // userIdが変わるたびに実行
+  }, [userId]);
 
   return (
     <div
-      className=" flex flex-col  items-center justify-center min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: 'url("/images/white_00115.jpg")' }} // 背景画像を設定
+      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}
     >
-      {bookmarks.length > 0 ? (
-        bookmarks.map((bookmark) => (
-          <MusicCard key={bookmark.id} music={bookmark} />
-        ))
-      ) : (
-        <p className="text-4xl font-bold items-center justify-center mb-35 text-black">
-          ブックマークされた投稿が表示されるまでしばらくお待ちください……
-        </p>
-      )}
+      <MusicCard bookmarkedPosts={bookmarks} />  {/* MusicCardにデータを渡す */}
     </div>
   );
 }

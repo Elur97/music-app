@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore";
+import { getFirestore, enableMultiTabIndexedDbPersistence } from "firebase/firestore";
 
 // Firebase 設定
 const firebaseConfig = {
@@ -17,7 +17,8 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
 
-enableIndexedDbPersistence(db)
+// マルチタブ同期を有効にする
+enableMultiTabIndexedDbPersistence(db)
   .catch((err) => {
     if (err.code === "failed-precondition") {
       console.error("複数のタブで開いているため永続化が無効になっています。");
