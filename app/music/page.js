@@ -45,11 +45,12 @@ export default function MusicPage() {
       setComment("");
       setSelectedArtist(null);
       alert("投稿完了！");
-      router.push("/");
+
     } catch (error) {
       console.error("投稿エラー:", error.message);
     }
   };
+  
 
   // ブックマーク追加
   const handleBookmark = async (post) => {
