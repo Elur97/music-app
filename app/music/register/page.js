@@ -9,16 +9,18 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
+    //emailとパスワードによるユーザー認証
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      router.push("/music");  // 登録成功後、音楽投稿ページへ遷移
+      router.push("/");  // 登録成功後、ホーム画面へ遷移
     } catch (error) {
       console.error("登録エラー:", error.message);
     }
   };
 
+    //ユーザー新規登録画面のレイアウト
   return (
     <div className="flex flex-col  items-center justify-center min-h-screen bg-cover bg-center " 
          style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}>
@@ -39,8 +41,10 @@ export default function RegisterPage() {
           placeholder="パスワード"
           className="w-90 border mr-3 p-2 mb-4 rounded"
         />
+
+          {/*新規登録確認ボタン*/}
         <button type="submit" className="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-700">
-          Confirm
+          新規登録
         </button>
       </form>
     </div>
