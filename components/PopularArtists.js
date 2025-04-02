@@ -48,7 +48,7 @@ export default function PopularArtists({ onSelect }) {
             album.artists.map((artist) => artist.id)
           )
         ),
-      ].slice(0, 22);
+      ].slice(0, 20);
 
       const artistRes = await fetch(
         `https://api.spotify.com/v1/artists?ids=${artistIds.join(",")}`,

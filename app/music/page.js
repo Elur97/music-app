@@ -83,27 +83,27 @@ export default function MusicPage() {
       style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}
     >
       {/* ユーザー入力フォーム */}
-      <h2 className="text-3xl ml-8 font-bold text-black">Lets share the music!</h2>
+      <h2 className="md:text-3xl text-4xl ml-6 font-bold text-black">Lets share the music!</h2>
       <form onSubmit={handleSubmit} className="space-y-4 bg-white bg-opacity-70 p-6 rounded-lg shadow-lg">
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="タイトル"
-          className="border p-2 ml-2 rounded w-370"
+          className="border  p-2 ml-2 rounded md:w-350 w-72"
         />
         <input
           type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           placeholder="URL"
-          className="border p-2 ml-2 rounded w-370"
+          className="border p-2 ml-2 rounded md:w-350 w-72"
         />
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="コメントまたは感想を入力"
-          className="border p-2 ml-2 rounded w-370"
+          className="border p-2 ml-2 rounded md:w-350 w-72"
         />
         <div className="ml-2">
           <h3 className="text-3xl font-semibold mb-2 text-black">Please select the artist：</h3>
@@ -113,16 +113,18 @@ export default function MusicPage() {
           )}
         </div>
         {/* 投稿ボタン */}
-        <button type="submit" className="ml-193 bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded">
+        <button type="submit" className="md:ml-170 ml-30
+        
+        bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded">
           POST
         </button>
       </form>
 
       <div className="mt-5">
-        <h3 className="text-3xl ml-10 font-bold text-black">Posts list</h3>
-        <div className="space-y-3">
+        <h3 className="md:text-3xl text-4xl md:ml-10 font-bold text-black">Posts list</h3>
+        <div className="md:space-y-3 md:w-300">
           {posts.map((post) => (
-            <div key={post.id} className="w-350 ml-10 border p-4 rounded-md bg-white">
+            <div key={post.id} className="md:w-360 w-85  md:ml-5 border p-4 rounded-md bg-white">
               <h4>{post.title}</h4>
               <p>{post.comment}</p>
               <p>{post.artist?.name || "アーティスト未選択"}</p>
@@ -136,18 +138,18 @@ export default function MusicPage() {
               <a href={post.url} target="_blank" rel="noopener noreferrer" className="text-blue-500">
                 {post.url}
               </a>
-              <div className="flex ml-60">
+              <div className="flex  md:w-300 md:ml-60">
                 <button
                   onClick={() => handleBookmark(post)}
-                  className="bg-yellow-500 text-white px-4 py-2 ml-230 rounded"
+                  className="bg-yellow-500 text-white px-4 py-2 md:ml-230  ml-29   rounded"
                 >
-                  Bookmark
+                  ブックマーク
                 </button>
                 <button
                   onClick={() => handleDeletePost(post.id)}
-                  className="bg-red-500 text-white px-4 py-2 ml-2 rounded"
+                  className="bg-red-500 text-white px-4 py-2 ml-2 md:w-25  rounded"
                 >
-                  Delete
+                  削除
                 </button>
               </div>
             </div>
@@ -158,7 +160,7 @@ export default function MusicPage() {
       {/* ホームページに戻るボタン */}
       <button
         onClick={() => router.push("/")}
-        className="bg-blue-500 hover:bg-blue-800 text-white ml-200 justify-center items-center px-4 py-2 rounded mt-4"
+        className="bg-blue-500 hover:bg-blue-800 text-white md:ml-200 ml-35 justify-center items-center px-4 py-2 rounded mt-4"
       >
         HOME
       </button>
