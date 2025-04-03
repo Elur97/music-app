@@ -26,7 +26,7 @@ export default function LoginPage() {
       className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center" 
       style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}>
       <h2 className="md:text-7xl text-5xl md:mt-0 mt-7 font-bold mb-18 text-black">Sign In</h2>
-      <p className="md:text-3xl md:ml-0 ml-3 text-2xl font-bold mb-4 text-black ">サインアップの際に使用したメールアドレスとパスワードを入力してください。</p>
+      <p className="md:text-3xl md:ml-0 ml-2 text-2xl font-bold mb-4 text-black ">サインアップの際に使用したメールアドレスとパスワードを入力してください。</p>
       <form onSubmit={handleLogin} className="border p-20 bg-white bg-opacity-60 rounded-lg shadow-md">
         <input
           type="email"
