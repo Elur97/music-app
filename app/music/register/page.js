@@ -28,7 +28,7 @@ export default function RegisterPage() {
       }}
     >
       <h2 className="md:text-7xl text-5xl md:mt-0 mt-7 font-bold mb-8 text-black">Sign Up</h2>
-      <p className="md:text-3xl  text-2xl font-bold mb-4 text-black">
+      <p className="md:text-3xl  text-2xl md:ml-0 ml-3 font-bold mb-4 text-black">
         このサイトで使用するメールアドレスとパスワードを入力してください
       </p>
       <form
