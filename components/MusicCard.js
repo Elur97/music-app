@@ -60,7 +60,7 @@ export default function MusicCard({ bookmarkedPosts }) {  // propsでbookmarkedP
       </div>
       <button
         onClick={() => router.push("/")}
-        className="md:ml-170 ml-33 bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded mt-4"
+        className="md:ml-170 ml-30 bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded mt-4"
       >
         ホームに戻る
       </button>
