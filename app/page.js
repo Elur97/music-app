@@ -40,7 +40,7 @@ export default function Home() {
       </Link>
 
       {/* フッター */}
-      <footer className="bg-gray-800 text-white text-center p-2 w-100 md:w-370   ">
+      <footer className="bg-gray-800 text-white text-center p-2 w-88 md:w-370   ">
         <p>&copy; 2025 Music App. All rights reserved.</p>
       </footer>  
     </div>
