@@ -27,8 +27,8 @@ export default function RegisterPage() {
         backgroundImage: 'url("/images/white_00115.jpg")',
       }}
     >
-      <h2 className="text-7xl font-bold mb-8 text-black">Sign Up</h2>
-      <p className="text-3xl font-bold mb-4 text-black">
+      <h2 className="md:text-7xl text-5xl md:mt-0 mt-7 font-bold mb-8 text-black">Sign Up</h2>
+      <p className="md:text-3xl  text-2xl font-bold mb-4 text-black">
         このサイトで使用するメールアドレスとパスワードを入力してください
       </p>
       <form

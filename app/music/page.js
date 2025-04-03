@@ -159,11 +159,12 @@ export default function MusicPage() {
 
       {/* ホームページに戻るボタン */}
       <button
-        onClick={() => router.push("/")}
-        className="bg-blue-500 hover:bg-blue-800 text-white md:ml-200 ml-35 justify-center items-center px-4 py-2 rounded mt-4"
-      >
-        HOME
-      </button>
+  onClick={() => router.push("/")}
+  className="fixed  md:mr-0 mr-35  bottom-4 right-4 bg-blue-500 hover:bg-blue-800 text-white justify-center items-center px-4 py-2 rounded"
+>
+  HOME
+</button>
+
     </div>
   );
 }
