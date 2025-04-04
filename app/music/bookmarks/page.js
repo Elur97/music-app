@@ -51,7 +51,7 @@ export default function BookmarksPage() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
+      className="md:ml-20 flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: 'url("/images/white_00115.jpg")' }}
     >
       <MusicCard bookmarkedPosts={bookmarks} />  {/* MusicCardにデータを渡す */}
