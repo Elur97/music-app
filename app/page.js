@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div 
       className="grid sm:grid-cols-1 md:grid-cols-2 justify-center gap-6 min-h-screen bg-cover sm:bg-cover bg-center hover:bg-gray-600 p-4"
-      style={{ backgroundImage: 'url("/images/music-and-leisure-PB7QKEF.jpg")' }}
+      style={{ backgroundImage: 'url("/images/music_notes_close-up-Music_HD_Wallpaper_1280x800.jpg")' }}
     >
       {/* Sign Up ボタン */}
       <Link href="/music/register" 
